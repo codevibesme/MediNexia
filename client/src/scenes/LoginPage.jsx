@@ -56,7 +56,7 @@ const LoginPage = () => {
 
                 <form style={{margin:"5%"}} onSubmit={handleLogin}>
                     <input placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                    <input placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input placeholder="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     <button type='submit' className="signUpBtn">Login</button>
                 </form>
                 <Typography variant="p" sx={{color:"#828282", alignSelf:"center", mt:"20px"}}>

@@ -8,26 +8,27 @@ const SignupPage = () => {
     const [password, setPassword] = useState('');
 
     const handleRegister = async (e) => {
-        // e.preventDefault();
-        // try{
-        //     const credentials = {
-        //         email,
-        //         password
-        //     };
-        //     const response = await fetch("http://localhost:8000/auth/register", {
-        //         method:"POST",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         body: credentials,
-        //     });
-        //     const { user } = await response.json();
-        //     if(user){
-        //         navigate("/login");
-        //     }
-        // } catch(err) {
-        //     console.log(err.message);
-        // }
+        e.preventDefault();
+        try{
+            let credentials = {
+                email,
+                password
+            };
+            credentials = JSON.stringify(credentials);
+            const response = await fetch("http://localhost:8000/auth/register", {
+                method:"POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: credentials,
+            });
+            const { user } = await response.json();
+            if(user){
+                navigate("/login");
+            }
+        } catch(err) {
+            console.log(err.message);
+        }
     }
     return (
         <Box className="loginContainer" sx={{display:"flex", flexDirection:"column" }}> 
@@ -46,7 +47,7 @@ const SignupPage = () => {
 
             <form style={{margin:"5%"}} onSubmit={handleRegister}>
                 <input placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                <input placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <input placeholder="Password" type="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                 <button type="submit" className="signUpBtn">Sign up</button>
             </form>
             <Typography variant="p" sx={{color:"#828282", alignSelf:"center", mt:"20px"}}>

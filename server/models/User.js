@@ -4,7 +4,6 @@ const userSchema = mongoose.Schema({
     picturePath: String,
     name: {
         type: String,
-        required: true,
     },
     bio: String,
     phone: String,

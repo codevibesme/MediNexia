@@ -4,27 +4,18 @@ import bcrypt from "bcrypt";
 export const register = async (req, res) => {
     try{
         const {
-            picturePath,
-            name,
-            bio,
-            phone,
             email,
             password,
-        } = req.body;
-
+        } = await req.body;
+        console.log(email, password);
         const duplicateUser = await User.findOne({email}).exec();
         if(duplicateUser) {
             console.log(duplicateUser);
             return res.status(409).json({message: "User with same email already Exists!"});
         }
-
         const salt = await bcrypt.genSalt();
         const hashedPassword = await bcrypt.hash(password, salt);
         const newUser = new User({
-            picturePath,
-            name,
-            bio,
-            phone,
             email,
             password: hashedPassword,
         });
