@@ -10,7 +10,7 @@ const ProfilePage = () => {
         <>
         <UserMenu />
         <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-            <img src="../assets/logo.png" alt="logo" className="logo" style={{height: "80px", width: "80px"}} />
+            <img src="/assets/logo.png" alt="logo" className="logo" style={{height: "80px", width: "80px"}} />
             <Typography variant='h3'>MediNexia</Typography>
             
         </div>
