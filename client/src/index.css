@@ -16,6 +16,12 @@ code {
     monospace;
 }
 
+.backNav{
+  position: relative;
+  left: 28%;
+  top: 14%;
+}
+
 .loginContainer{
   margin: 80px auto;
   width: 30%;

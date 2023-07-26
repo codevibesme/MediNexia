@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, setToken, setIsLoggedIn } from '../slices/authSlice.js';
 import { useNavigate } from 'react-router';
+
 const UserMenu = () => {
     const user = useSelector((state)=>state.user);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -47,7 +48,7 @@ const UserMenu = () => {
             onClick={handleClick}
             sx={{color:"#333333", fontSize:"16px", position:"absolute", top:"2%", right:"2%"}}
         >
-            <img alt="pic" style={{height:"36.69px", width:"32px", marginRight:"5px", visibility:`${user.picturePath? 'visible': 'hidden'}`}} />
+            <img alt="pic" style={{height:"36.69px", width:"32px", marginRight:"5px", visibility:`${user.picturePath? 'visible': 'hidden'}`}} src={`http://localhost:8000/assets/${user.picturePath}`} />
             {user.name? `${user.name}` : "Hi, User"}
         </Button>
         <Menu

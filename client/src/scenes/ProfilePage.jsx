@@ -2,10 +2,11 @@ import { Button, Typography } from '@mui/material';
 import React from 'react'
 import { useSelector } from "react-redux";
 import UserMenu from '../components/UserMenu';
+import { useNavigate } from 'react-router';
 const ProfilePage = () => {
     const user = useSelector((state) => state.user);
-    
-
+    const navigate = useNavigate();
+    console.log(user.picturePath);
     return (
         <>
         <UserMenu />
@@ -24,7 +25,7 @@ const ProfilePage = () => {
                 height:"10%"
             }}>
                 <Typography sx={{fontSize:"24px"}}>Profile</Typography>
-                <Button variant='text' sx={{
+                <Button onClick={()=>navigate(`/profile/${user._id}/edit`)} variant='text' sx={{
                     borderRadius:"12px",
                     color:"#828282",
                     border:"1px solid #828282"
@@ -38,17 +39,19 @@ const ProfilePage = () => {
                 display:"flex",
                 alignContent:"center",
                 padding:"1% 5%",
-                height:"10%"
+                height:"15%"
             }}>
                 <Typography sx={{fontSize:"18px", color:"#BDBDBD"}}>Photo</Typography>
                 <img alt="prof.pic" style={{
                     borderRadius:"12%",
                     position:"relative",
                     left:"30%",
-                    height:"25%px",
-                    width:"8%",
-                    visibility:`${user.picturePath? 'visible': 'hidden'}`
-                }} />
+                    height:"100%",
+                    width:"10%",
+                    visibility:`${user.picturePath? 'visible': 'hidden'}`,
+                }}
+                    src={user.picturePath? `http://localhost:8000/assets/${user.picturePath}` : "assets/no_prof.png"} 
+                />
                 
             </div>
             <hr style={{width:"100%", border:"1px solid #D3D3D3"}}/>

@@ -21,7 +21,7 @@ const app = express();
 dotenv.config();
 
 //middleware for security
-app.use(helmet());
+app.use(helmet({crossOriginResourcePolicy: false,}));
 
 //middleware for cross origin resource sharing
 app.use(cors());
@@ -48,7 +48,7 @@ const upload = multer({storage: storage});
 
 // ROUTES WITH STATIC FILES
 app.post("/auth/register", upload.single("picture"), register);
-app.use("/user/:id/edit", verifyToken, upload.single("picture"), editUser);
+app.put("/user/:id/edit", verifyToken, upload.single("picture"), editUser);
 
 // ROUTES
 app.use("/auth", authRoutes);
